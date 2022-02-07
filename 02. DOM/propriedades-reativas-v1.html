@@ -1,0 +1,18 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <p> {{ titulo }} </p>
+    <input v-model="titulo" type="text">    
+    <!-- v-bind  = do javascript para o html -->
+    <!-- v-on    = do html para o javascript -->
+    <!-- v-model = nos dois sentidos -->
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            titulo: 'Usando VueJS!'
+        }
+    })
+</script>
