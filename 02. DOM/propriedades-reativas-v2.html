@@ -1,0 +1,41 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <button v-on:click="aumentar">Aumentar</button>
+    <button v-on:click="aumentar2">Aumentar 2</button>
+    <button v-on:click="diminuir">Diminuir</button>
+    <button v-on:click="diminuir2">Diminuir 2</button>
+    <p>Contador: {{ contador }} | {{ contador2 }} </p>        
+    <p>Resultado: {{ resultado }} </p>        
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            contador: 0,
+            contador2: 0
+        },
+        computed: {
+            resultado() {
+                // só será executado quando o propriedade contador for alterada, se alterar contador2 não passará aqui ..
+                console.log('metodo resultado foi chamado..');
+                return this.contador >= 5 ? 'Maior ou igual a 5' : 'Menor que 5';
+            }
+        },
+        methods: {
+            aumentar() {
+                this.contador++;
+            },
+            aumentar2() {
+                this.contador2++;
+            },            
+            diminuir() {
+                this.contador--;
+            },
+            diminuir2() {
+                this.contador2--;
+            }            
+        }
+    })
+</script>
