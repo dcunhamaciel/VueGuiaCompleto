@@ -13,5 +13,10 @@ new Vue({
 			nome: 'Maria',
 			notas: [7.67, 8.33, 6.98, 9.21]
 		}
+	},
+	methods: {
+		isArray (valor) {
+			return Array.isArray(valor)
+		}
 	}
 });
