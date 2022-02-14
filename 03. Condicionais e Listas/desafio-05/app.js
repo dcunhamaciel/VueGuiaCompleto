@@ -15,7 +15,7 @@ new Vue({
 		}
 	},
 	methods: {
-		isArray (valor) {
+		isArray(valor) {
 			return Array.isArray(valor)
 		}
 	}
