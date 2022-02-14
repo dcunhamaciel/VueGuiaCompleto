@@ -15,7 +15,7 @@ new Vue({
 		}
 	},
 	methods: {
-		isArray (valor) {
+		checkIfisArray (valor) {
 			return Array.isArray(valor)
 		}
 	}
