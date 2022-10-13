@@ -10,7 +10,7 @@ new Vue({
 			width: '100px',
 			height: '100px'
 		},
-		width = '0%'
+		width: '0%'
 	},
 	methods: {
 		iniciarEfeito() {
