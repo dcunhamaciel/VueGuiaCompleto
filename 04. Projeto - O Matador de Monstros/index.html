@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Bootstrap demo</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+	<link rel="stylesheet" href="styles.css">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>	
+</head>
+<body>
+	<div id="desafio">
+		<div id="div_jogador" class="card text-center">
+			<div class="card-group">				
+				<div class="card-body">
+					<h5>JOGADOR</h5>
+					<div class="progress">
+						<div :class="['progress-bar', vidaJogadorCor]" :style="vidaJogador">{{ jogo.jogador.vida }}%</div>
+					</div>					
+				</div>
+				<div class="card-body">				
+					<h5>MONSTRO</h5>
+					<div class="progress">
+						<div :class="['progress-bar', vidaMonstroCor]" :style="vidaMonstro">{{ jogo.monstro.vida }}%</div>
+					</div>					
+				</div>								
+			</div>
+		</div>
+
+		<div id="div_resultado" class="card text-center" v-if="jogo.finalizado">
+			<div class="card-body">
+				<span class="fs-5 fw-bold text-success" v-if="jogo.jogador.vencedor">VOCÊ GANHOU !!! :)</span>
+				<span class="fs-5 fw-bold text-danger" v-if="jogo.monstro.vencedor">VOCÊ PERDEU ! :(</span>
+				<span class="fs-5 fw-bold text-seconday" v-if="!jogo.jogador.vencedor && !jogo.monstro.vencedor">EMPATE !</span>
+			</div>
+		</div>
+
+		<div id="div_operacao" class="card text-center">
+			<div class="card-body">
+				<template v-if="!jogo.iniciado">
+					<button type="button" class="btn btn-primary" @click="iniciarJogo()">INICIAR NOVO JOGO</button>
+				</template>
+				<template v-else="">
+					<button type="button" class="btn btn-danger" @click="ataque()">ATAQUE</button>
+					<button type="button" class="btn btn-warning" @click="ataqueEspecial()">ATAQUE ESPECIAL</button>
+					<button type="button" class="btn btn-success" @click="curar()">CURAR</button>
+					<button type="button" class="btn btn-secondary" @click="desistir()">DESISTIR</button>
+				</template>
+			</div>
+		</div>
+
+		<div id="div_atividade" class="card text-center" v-if="jogo.jogadas.length > 0">
+			<div class="card-body">
+				<div v-for="jogada in jogo.jogadas" :class="{ataque_jogador: jogada.identificador == 'J', ataque_monstro: jogada.identificador == 'M'}">{{ jogada.mensagem }}</div>
+			</div>
+		</div>		
+	</div>
+</body>
+</html>
+
+<script src="app.js"></script>

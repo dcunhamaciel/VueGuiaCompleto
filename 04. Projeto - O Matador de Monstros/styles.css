@@ -1,0 +1,24 @@
+.card {
+	margin: 10px;
+	box-shadow: 3px 3px 3px lightgray;
+}
+
+.progress {
+	height: 25px;
+}
+
+.btn {
+	margin: 5px;	
+}
+
+.ataque_jogador {
+	background-color: #0d6efd;
+	color: white;
+	margin: 5px;
+}
+
+.ataque_monstro {
+	background-color: #dc3545;
+	color: white;
+	margin: 5px;
+}
