@@ -1,9 +1,6 @@
 <template>
-    <div id="app">
-        <h1>Contadores:</h1>
-        <app-contador></app-contador>
-        <app-contador></app-contador>
-        <app-contador></app-contador>
+    <div id="app">        
+        <app-contadores></app-contadores>
     </div>
 </template>
 
@@ -12,5 +9,3 @@ export default {
 
 }
 </script>
-
-AppContador
