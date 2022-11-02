@@ -1,10 +1,12 @@
 <template>
     <v-app>    
-        <app-navigation></app-navigation>
+        <app-menu></app-menu>
 
-        <app-bar></app-bar>
+        <app-toolbar></app-toolbar>
 
-        <app-carousel></app-carousel>
+        <v-content>
+            <app-carousel></app-carousel>
+        </v-content>
 
         <app-footer></app-footer>
     </v-app>
