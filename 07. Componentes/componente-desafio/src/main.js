@@ -1,9 +1,9 @@
 import Vue from 'vue'
-import App from './App.vue'
-import Menu from './components/Menu.vue'
-import Toolbar from './components/Toolbar.vue'
-import Carousel from './components/Carousel.vue'
-import Footer from './components/Footer.vue'
+import App from './main/App.vue'
+import Menu from './components/template/Menu.vue'
+import Toolbar from './components/template/Toolbar.vue'
+import Footer from './components/template/Footer.vue'
+import Carousel from './components/widgets/Carousel.vue'
 import vuetify from './plugins/vuetify';
 
 Vue.config.productionTip = false
