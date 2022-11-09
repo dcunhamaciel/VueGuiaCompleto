@@ -1,12 +1,17 @@
 <template>
     <div id="app">
-        <h1>Tarefas</h1>
+        <h1>Tarefas</h1>        
     </div>
 </template>
 
 <script>
 export default {
-
+    data() {
+      return {
+        value: 45,
+        max: 100
+      }
+    }
 }
 </script>
 
@@ -14,7 +19,6 @@ export default {
     body {
         font-family: 'Lato', sans-serif;
         background: linear-gradient(to right, rgb(22, 34, 42), rgb(58, 96, 115));
-        color: #FFF;
     }
 
     #app {
@@ -30,5 +34,6 @@ export default {
         margin-bottom: 5px;
         font-weight: 300;
         font-size: 3rem;
+        color: #FFF;
     }
 </style>
