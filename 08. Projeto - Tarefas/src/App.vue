@@ -1,16 +1,24 @@
 <template>
     <div id="app">
-        <h1>Tarefas</h1>        
+        <h1>Tarefas</h1>
+        <progress-bar></progress-bar>
+        <br>
+        <input-task></input-task>
+        <br>
+        <card-task></card-task>
     </div>
 </template>
 
 <script>
+import ProgressBar from './components/ProgressBar.vue'
+import InputTask from './components/InputTask.vue'
+import CardTask from './components/CardTask.vue'
+
 export default {
-    data() {
-      return {
-        value: 45,
-        max: 100
-      }
+    components: {
+        ProgressBar,
+        InputTask,
+        CardTask
     }
 }
 </script>
