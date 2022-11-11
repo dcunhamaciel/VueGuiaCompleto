@@ -1,8 +1,8 @@
 <template>
     <div style="width: 13%">
         <b-card @click="doTask" :class="['card', cardColor]" style="height: 100px">
-            <b-button-close></b-button-close>
-            <p>{{ task.description }}</p>
+            <b-button-close @click="removeTask"></b-button-close>
+            <p :class="[textDecoration]">{{ task.description }}</p>
         </b-card>
     </div>
 </template>
@@ -15,11 +15,17 @@ export default {
     methods: {
         doTask() {
             this.$emit('doTask', this.task);
+        },
+        removeTask() {
+            this.$emit('removeTask', this.task);
         }
     },
     computed: {
         cardColor() {
             return this.task.done ? 'bg-success' : 'bg-danger';
+        },
+        textDecoration() {
+            return this.task.done ? 'p-decoration' : '';
         }
     }
 }
@@ -36,6 +42,11 @@ export default {
 
     p {
         float: left;
-        text-align: center;
+        text-align: center;        
+        color: white;
+    }
+
+    .p-decoration {
+        text-decoration: line-through;
     }
 </style>
