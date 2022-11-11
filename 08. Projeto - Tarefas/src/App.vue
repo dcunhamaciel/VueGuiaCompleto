@@ -3,9 +3,18 @@
         <h1>Tarefas</h1>
         <progress-bar></progress-bar>
         <br>
-        <input-task></input-task>
+        <input-task @addTask="addTask($event)"></input-task>
         <br>
-        <card-task></card-task>
+        {{ taskList }}
+        <br><br>
+        <div id="pqp">
+            <card-task 
+                v-for="taskItem in taskList" 
+                :key="taskItem.description" 
+                :task="taskItem"
+                @doTask="doTask($event)">
+            </card-task>
+        </div>
     </div>
 </template>
 
@@ -19,6 +28,26 @@ export default {
         ProgressBar,
         InputTask,
         CardTask
+    },
+    data() {
+        return {
+            taskList: []
+        }
+    },
+    methods: {
+        addTask(taskDescription) {
+            let taskFound = this.taskList.filter(task => task.description == taskDescription);
+
+            if (taskFound.length == 0)
+                this.taskList.push({
+                    description: taskDescription,
+                    done: false
+                });
+        },
+        doTask(task) {
+            console.log('teste');
+            task.done = !task.done;
+        }
     }
 }
 </script>
@@ -43,5 +72,13 @@ export default {
         font-weight: 300;
         font-size: 3rem;
         color: #FFF;
+    }
+
+    #pqp {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
     }
 </style>

@@ -1,9 +1,9 @@
 <template>
     <div style="width: 25%">
         <b-input-group class="mt-2">
-            <b-form-input @keypress.enter="newTask" v-model="task" placeholder="Nova Tarefa?"></b-form-input>
+            <b-form-input @keypress.enter="addTask" v-model="task" placeholder="Nova Tarefa?"></b-form-input>
             <b-input-group-append>
-                <b-button @click="newTask" variant="primary">+</b-button>
+                <b-button @click="addTask" variant="primary">+</b-button>
             </b-input-group-append>
         </b-input-group>
     </div>
@@ -17,8 +17,8 @@ export default {
         }
     },
     methods: {
-        newTask() {
-            this.$emit('newTask', this.task);
+        addTask() {
+            this.$emit('addTask', this.task);
             this.task = '';
         }
     }
