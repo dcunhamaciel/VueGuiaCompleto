@@ -1,18 +1,17 @@
 <template>
     <div id="app">
         <h1>Tarefas</h1>
-        <progress-bar></progress-bar>
+        <progress-bar :taskList="taskList"></progress-bar>
         <br>
         <input-task @addTask="addTask($event)"></input-task>
         <br>
-        {{ taskList }}
-        <br><br>
-        <div id="pqp">
+        <div id="task">
             <card-task 
                 v-for="taskItem in taskList" 
                 :key="taskItem.description" 
                 :task="taskItem"
-                @doTask="doTask($event)">
+                @doTask="doTask($event)"
+                @removeTask="removeTask($event)">
             </card-task>
         </div>
     </div>
@@ -36,17 +35,30 @@ export default {
     },
     methods: {
         addTask(taskDescription) {
-            let taskFound = this.taskList.filter(task => task.description == taskDescription);
+            if (taskDescription.trim() == '')
+                return;
 
-            if (taskFound.length == 0)
+            if (!this.hasTask(taskDescription))
                 this.taskList.push({
                     description: taskDescription,
                     done: false
-                });
+                });                
         },
-        doTask(task) {
-            console.log('teste');
+        removeTask(task) {
+            let taskIndex = this.taskList.indexOf(task);
+
+            this.taskList.splice(taskIndex, 1);
+        },
+        doTask(task) {            
             task.done = !task.done;
+        },
+        hasTask(taskDescription) {
+            if (this.taskList.length == 0)
+                return false;
+
+            let taskFound = this.taskList.filter(task => task.description == taskDescription);
+
+            return taskFound.length > 0;
         }
     }
 }
@@ -74,11 +86,11 @@ export default {
         color: #FFF;
     }
 
-    #pqp {
+    #task {
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;          
         width: 100%;
     }
 </style>
