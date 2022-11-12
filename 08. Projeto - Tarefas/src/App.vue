@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <h1>Tarefas</h1>
-        <progress-bar :taskList="taskList"></progress-bar>
+        <task-progress :taskList="taskList"></task-progress>
         <br>
         <task-input @addTask="addTask($event)"></task-input>
         <br>
@@ -19,13 +19,13 @@
 </template>
 
 <script>
-import ProgressBar from './components/ProgressBar.vue'
+import TaskProgress from './components/TaskProgress.vue'
 import TaskInput from './components/TaskInput.vue'
 import TaskCard from './components/TaskCard.vue'
 
 export default {
     components: {
-        ProgressBar,
+        TaskProgress,
         TaskInput,
         TaskCard
     },
