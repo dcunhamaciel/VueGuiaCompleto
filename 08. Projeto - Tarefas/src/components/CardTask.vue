@@ -33,7 +33,9 @@ export default {
 
 <style scoped>
     .card {
-        border-left-width: 8px;   
+        border-left-width: 8px;
+        margin-right: 10px;
+        margin-bottom: 10px;
     }
 
     .card-body {
