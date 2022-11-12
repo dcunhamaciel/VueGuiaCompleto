@@ -2,7 +2,11 @@
 	<div id="app">
 		<h1>Tarefas</h1>
 		<new-task @taskAdded="addTask($event)"></new-task>
-		<task-grid :tasks="tasks" @taskDeleted="taskDeleted($event)"></task-grid>
+		<task-grid 
+			:tasks="tasks" 
+			@taskDeleted="deleteTask($event)"
+			@taskStateChanged="toggleTaskState($event)">
+		</task-grid>
 	</div>
 </template>
 
@@ -29,8 +33,11 @@ export default {
 				});
 			}
 		},
-		taskDeleted(taskIndex) {
+		deleteTask(taskIndex) {
 			this.tasks.splice(taskIndex, 1);
+		},
+		toggleTaskState(taskIndex) {
+			this.tasks[taskIndex].pending = !this.tasks[taskIndex].pending;
 		}
 	}
 }
