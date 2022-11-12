@@ -24,5 +24,18 @@ export default {
 </script>
 
 <style>
-
+    .task {
+        box-sizing: border-box;
+        width: 350px;
+        height: 150px;
+        padding: 10px;
+        border-radius: 8px;
+        font-size: 2rem;
+        font-weight: 300;
+        cursor: pointer;
+        user-select: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 </style>

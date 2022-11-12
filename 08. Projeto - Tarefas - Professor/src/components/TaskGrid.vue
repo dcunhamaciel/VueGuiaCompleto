@@ -1,8 +1,9 @@
 <template>
     <div class="task-grid">
-        <template>
+        <template v-if="tasks.length">
             <task v-for="task in tasks" :key="task.name" :task="task"></task>
         </template>
+        <p v-else class="no-task">Sua vida está em dia :)</p>
     </div>
 </template>
 
@@ -21,19 +22,19 @@ export default {
 </script>
 
 <style>
-    .task {
-        box-sizing: border-box;
-        width: 350px;
-        height: 150px;
-        padding: 10px;
-        border-radius: 8px;
-        font-size: 2rem;
-        font-weight: 300;
-        cursor: pointer;
-        user-select: none;
+    .task-grid {
         display: flex;
         justify-content: center;
-        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .task-grid .task {
+        margin: 10px;
+    }
+
+    .no-task {
+        color: #AAA;
+        font-size: 1.7rem;
     }
 
     .pending {
