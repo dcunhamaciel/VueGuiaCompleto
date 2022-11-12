@@ -6,6 +6,7 @@
         <input-task @addTask="addTask($event)"></input-task>
         <br>
         <div id="task">
+            <h6 v-if="taskList.length == 0">Sua vida está em dia :)</h6>
             <card-task 
                 v-for="taskItem in taskList" 
                 :key="taskItem.description" 
@@ -79,7 +80,7 @@ export default {
         height: 100vh;
     }
 
-    #app h1 {
+    #app h1, h6 {
         margin-bottom: 5px;
         font-weight: 300;
         font-size: 3rem;
