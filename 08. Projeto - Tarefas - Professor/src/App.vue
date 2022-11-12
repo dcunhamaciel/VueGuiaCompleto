@@ -1,21 +1,36 @@
 <template>
 	<div id="app">
 		<h1>Tarefas</h1>
+		<new-task @taskAdded="addTask($event)"></new-task>
 		<task-grid :tasks="tasks"></task-grid>
 	</div>
 </template>
 
 <script>
+import NewTask from './components/NewTask.vue';
 import TaskGrid from './components/TaskGrid.vue';
 
 export default {
-	components: { TaskGrid },
+	components: { NewTask, TaskGrid },
 	data() {
 		return {
 			tasks: [
 				{ name: 'lavar louça', pending: false },
 				{ name: 'comprar blusa', pending: true },
 			]
+		}
+	},
+	methods: {
+		addTask(task) {
+			const sameName = t => t.name === task.name;
+			const reallyNew = this.tasks.filter(sameName).length == 0;
+
+			if (reallyNew) {
+				this.tasks.push({
+					name: task.name,
+					pending: task.pending || true
+				});
+			}
 		}
 	}
 }
