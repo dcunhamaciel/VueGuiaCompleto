@@ -3,31 +3,31 @@
         <h1>Tarefas</h1>
         <progress-bar :taskList="taskList"></progress-bar>
         <br>
-        <input-task @addTask="addTask($event)"></input-task>
+        <task-input @addTask="addTask($event)"></task-input>
         <br>
         <div id="task">
             <h6 v-if="taskList.length == 0">Sua vida está em dia :)</h6>
-            <card-task 
+            <task-card
                 v-for="taskItem in taskList" 
                 :key="taskItem.description" 
                 :task="taskItem"
                 @doTask="doTask($event)"
                 @removeTask="removeTask($event)">
-            </card-task>
+            </task-card>
         </div>
     </div>
 </template>
 
 <script>
 import ProgressBar from './components/ProgressBar.vue'
-import InputTask from './components/InputTask.vue'
-import CardTask from './components/CardTask.vue'
+import TaskInput from './components/TaskInput.vue'
+import TaskCard from './components/TaskCard.vue'
 
 export default {
     components: {
         ProgressBar,
-        InputTask,
-        CardTask
+        TaskInput,
+        TaskCard
     },
     data() {
         return {
