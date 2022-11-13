@@ -37,7 +37,7 @@
 					</select>
 				</Rotulo>
 				<Rotulo nome="Primeira Reclamação?">
-					<Escolha />
+					<Escolha v-model="escolha"/>
 				</Rotulo>
 				<hr>
 				<button>Enviar</button>
@@ -70,7 +70,7 @@
 					<span>{{ prioridades[prioridade-1].nome }}</span>
 				</Rotulo>
 				<Rotulo nome="Primeira Reclamação?">
-					<span>???</span>
+					<span>{{ escolha ? 'Sim' : 'Não' }}</span>
 				</Rotulo>
 			</div>
 		</div>
@@ -99,7 +99,8 @@ export default {
 				email: '',
 				senha: '',
 				idade: 38
-			}			
+			},
+			escolha: true
 		}
 	}
 }
