@@ -2,27 +2,48 @@
 	<div id="app">
 		<h1>Formulário Desafio</h1>
 		<div class="conteudo">
-			<form class="painel">
-				<div class="cabecalho">Formulário</div>
-				<!-- Exercicio 01 -->
-				<!-- Criar uma formulário de registro -->
-				<!-- Nome completo (Nome e Sobrenome) -->
-				<!-- Email -->
-				<!-- Senha -->
-				<!-- Armazenar Dados? (Sim/Não) -->
-
-				<!-- Exercicio 02 -->
-				<!-- Só mostrar o fomulário de não tiver sido submetido -->
-				<!-- Mostrar a área de Resultado apenas quando o formulário for submetido -->
-				
-				<!-- Exercicio 03 -->
-				<!-- Crie um componente personalizado NomeCompleto -->
-				<!-- Esse componente deve receber Nome e Sobrenome -->
+			<form class="painel" v-if="!enviado">
+				<div class="cabecalho">Formulário
+					<rotulo nome="Nome">
+						<input type="text" v-model="usuario.nome">
+					</rotulo>
+					<rotulo nome="Sobrenome">
+						<input type="text" v-model="usuario.sobrenome">
+					</rotulo>
+					<rotulo nome="E-mail">
+						<input type="email" v-model="usuario.email">
+					</rotulo>
+					<rotulo nome="Senha">
+						<input type="password" v-model="usuario.senha">
+					</rotulo>
+					<div>
+						<input type="checkbox" v-model="armazenar">Armazenar dados?
+					</div>
+					<hr>
+					<button @click.prevent="enviar">Enviar</button>
+				</div>			
 			</form>
-			<div class="painel">
+			<div class="painel" v-else>
 				<div class="cabecalho">Resultado</div>
-
+				<rotulo nome="Nome">
+					<span>{{ usuario.nome }}</span>
+				</rotulo>
+				<rotulo nome="Sobrenome">
+					<span>{{ usuario.sobrenome }}</span>
+				</rotulo>
+				<rotulo nome="E-mail">
+					<span>{{ usuario.email }}</span>
+				</rotulo>				
+				<rotulo nome="Senha">
+					<span>{{ usuario.senha }}</span>
+				</rotulo>
+				<rotulo nome="Armazenar dados">
+					<span>{{ armazenar ? 'Sim' : 'Não' }}</span>
+				</rotulo>				
 			</div>
+			<!-- Exercicio 03 -->
+			<!-- Crie um componente personalizado NomeCompleto -->
+			<!-- Esse componente deve receber Nome e Sobrenome -->			
 		</div>
 	</div>
 </template>
@@ -32,7 +53,24 @@ import Rotulo from './components/Rotulo.vue'
 
 export default {
 	name: 'app',
-	components: { Rotulo }
+	components: { Rotulo },
+	data() {
+		return {
+			usuario: {
+				nome: '',
+				sobrenome: '',
+				email: '',
+				senha: ''
+			},
+			armazenar: false,
+			enviado: false
+		}
+	},
+	methods: {
+		enviar() {
+			this.enviado = true;
+		}
+	}
 }
 </script>
 
