@@ -4,20 +4,15 @@
 		<div class="conteudo">
 			<form class="painel" v-if="!enviado">
 				<div class="cabecalho">Formulário
-					<rotulo nome="Nome">
-						<input type="text" v-model="usuario.nome">
-					</rotulo>
-					<rotulo nome="Sobrenome">
-						<input type="text" v-model="usuario.sobrenome">
-					</rotulo>
+					<nome-completo v-model="nomeCompleto"></nome-completo>
 					<rotulo nome="E-mail">
-						<input type="email" v-model="usuario.email">
+						<input type="email" v-model="email">
 					</rotulo>
 					<rotulo nome="Senha">
-						<input type="password" v-model="usuario.senha">
+						<input type="password" v-model="senha">
 					</rotulo>
 					<div>
-						<input type="checkbox" v-model="armazenar">Armazenar dados?
+						<input type="checkbox" v-model="armazenarDados">Armazenar dados?
 					</div>
 					<hr>
 					<button @click.prevent="enviar">Enviar</button>
@@ -26,43 +21,41 @@
 			<div class="painel" v-else>
 				<div class="cabecalho">Resultado</div>
 				<rotulo nome="Nome">
-					<span>{{ usuario.nome }}</span>
+					<span>{{ nomeCompleto.nome }}</span>
 				</rotulo>
 				<rotulo nome="Sobrenome">
-					<span>{{ usuario.sobrenome }}</span>
+					<span>{{ nomeCompleto.sobrenome }}</span>
 				</rotulo>
 				<rotulo nome="E-mail">
-					<span>{{ usuario.email }}</span>
+					<span>{{ email }}</span>
 				</rotulo>				
 				<rotulo nome="Senha">
-					<span>{{ usuario.senha }}</span>
+					<span>{{ senha }}</span>
 				</rotulo>
 				<rotulo nome="Armazenar dados">
-					<span>{{ armazenar ? 'Sim' : 'Não' }}</span>
+					<span>{{ armazenarDados ? 'Sim' : 'Não' }}</span>
 				</rotulo>				
 			</div>
-			<!-- Exercicio 03 -->
-			<!-- Crie um componente personalizado NomeCompleto -->
-			<!-- Esse componente deve receber Nome e Sobrenome -->			
 		</div>
 	</div>
 </template>
 
 <script>
 import Rotulo from './components/Rotulo.vue'
+import NomeCompleto from './components/NomeCompleto.vue'
 
 export default {
 	name: 'app',
-	components: { Rotulo },
+	components: { Rotulo, NomeCompleto },
 	data() {
 		return {
-			usuario: {
+			nomeCompleto: {
 				nome: '',
-				sobrenome: '',
-				email: '',
-				senha: ''
+				sobrenome: ''
 			},
-			armazenar: false,
+			email: '',
+			senha: '',
+			armazenarDados: true,
 			enviado: false
 		}
 	},
