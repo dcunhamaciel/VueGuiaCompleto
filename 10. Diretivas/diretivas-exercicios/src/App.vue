@@ -8,8 +8,8 @@
 		<p v-destaque:fundo.atrasar="'lightblue'">Usando diretiva personalizada</p>
 		<p v-destaque.atrasar="cor">Usando diretiva personalizada</p>
 		<hr>
-		<p v-destaque-local:fundo.atrasar.alternar="'lightblue'">Usando diretiva personalizada</p>
-		<p v-destaque-local.atrasar="cor">Usando diretiva personalizada</p>		
+		<p v-destaque-local:fundo.atrasar.alternar="{ cor1: 'green', cor2: 'red', atraso: 2000, intervalo: 500 }">Usando diretiva personalizada</p>
+		<p v-destaque-local.atrasar="{ cor1: 'red', atraso: 5000 }">Usando diretiva personalizada</p>		
 	</div>
 </template>
 
@@ -27,10 +27,10 @@ export default {
 					}
 				}
 
-				let atraso = binding.modifiers['atrasar'] ? 3000 : 0;
+				let atraso = binding.modifiers['atrasar'] ? binding.value.atraso : 0;
 
-				const cor1 = binding.value;
-				const cor2 = 'purple';
+				const cor1 = binding.value.cor1;
+				const cor2 = binding.value.cor2;
 				let corAtual = cor1;
 
 				setTimeout(() => {
@@ -38,7 +38,7 @@ export default {
 						setInterval(() => {
 							aplicarCor(corAtual);
 							corAtual = corAtual === cor1 ? cor2 : cor1;							
-						}, 1000);
+						}, binding.value.intervalo);
 					} else {
 						aplicarCor(cor1);
 					}
