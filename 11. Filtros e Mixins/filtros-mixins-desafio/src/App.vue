@@ -1,25 +1,42 @@
 <template>
 	<div id="app">
-		<h1>Filtros & Mixins (Desafio)</h1>
-		<!-- Exercício 1 -->
-		<!-- Construir um filtro local que troca espaços por vírgula -->
-		
-		<!-- Exercício 2 -->
-		<!-- Filtro global que conta o tamanho de cada palavra e adiciona o 
-			valor na string final -->
-		<!-- "Pedro é legal" => "Pedro (5) é (1) legal (5)" -->
+		<h1>Filtros & Mixins (Desafio)</h1>		
+		<p>{{ frase }}</p>
 
-		<!-- Exercício 3 -->
-		<!-- Implementar os exercicios 1 e 2 com propriedade computada -->
+		<p>{{ frase | trocarEspaco }}</p>		
+		<p>{{ frase | contarPalavras }}</p>
 
-		<!-- Exercício 4 -->
-		<!-- Compartilhe a propriedade computada via mixin -->
+		<p>{{ trocarEspacoComputed }}</p>
+		<p>{{ contarPalavrasComputed }}</p>
+
+		<p>{{ trocarEspacoMixin() }}</p>
+		<p>{{ contarPalavrasMixin() }}</p>
 	</div>
 </template>
 
 <script>
+import frasesMixin from './frasesMixin.js';
+
 export default {
-	
+	mixins: [frasesMixin],
+	data() {
+		return {
+			frase: 'Essa é a frase que será usada nos desafios.'
+		}
+	},	
+	filters: {
+		trocarEspaco(valor) {			
+			return valor.split(' ').join(',');
+		}
+	},
+	computed: {
+		trocarEspacoComputed() {
+			return this.frase.split(' ').join(',');
+		},
+		contarPalavrasComputed() {
+			return this.frase.split(' ').map(palavra => palavra + ' (' + palavra.length + ') ').join('');
+		}
+	}	
 }
 </script>
 
