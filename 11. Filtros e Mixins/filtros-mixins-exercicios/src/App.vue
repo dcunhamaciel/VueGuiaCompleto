@@ -40,7 +40,10 @@ export default {
 		return {
 			cpfAluno: '60070080090'
 		}
-	}
+	},
+    created() {
+        console.log('Created - App.vue!');
+    }	
 }
 </script>
 
