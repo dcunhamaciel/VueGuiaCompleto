@@ -3,11 +3,13 @@
 		<h1>Animações</h1>
 		<hr>
 		<b-button variant="primary" class="mb-4" @click="exibir = !exibir">Mostrar Mensagem</b-button>
+
 		<transition name="fade">
 			<b-alert variant="info" show v-if="exibir">{{ msg }}</b-alert>
 		</transition>
+
 		<transition name="slide">
-			<b-alert variant="info" show v-if="exibir">{{ msg }}</b-alert>
+			<b-alert variant="info" show v-show="exibir">{{ msg }}</b-alert>
 		</transition>		
 	</div>
 </template>
