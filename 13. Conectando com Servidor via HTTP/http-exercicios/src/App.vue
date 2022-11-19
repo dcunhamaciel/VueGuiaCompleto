@@ -20,6 +20,9 @@
 				<strong>Nome: </strong>{{ usuario.nome }}
 				<br>
 				<strong>E-mail: </strong>{{ usuario.email }}
+				<br>
+				<b-button @click="carregarUsuario(id)" size="lg" variant="warning">Carregar</b-button>
+				<b-button @click="excluirUsuario(id)" size="lg" variant="danger" class="ml-2">Excluir</b-button>
 			</b-list-group-item>
 		</b-list-group>
 	</div>	
@@ -32,6 +35,7 @@ export default {
 	data() {
 		return {
 			usuarios: [],
+			id: null,
 			usuario: {
 				nome: '',
 				email: ''
@@ -39,12 +43,17 @@ export default {
 		}
 	},
 	methods: {
-		salvarUsuario() {
-			this.$http.post('usuarios.json', this.usuario)
-				.then(() => {
-					this.usuario.nome = '';
-					this.usuario.email = '';
-				});
+		limpar() {
+			this.usuario.nome = '';
+			this.usuario.email = '';
+			this.id = null;
+		},
+		salvarUsuario() {			
+			const metodo = this.id ? 'patch' : 'post';
+			const finalUrl = this.id ? `/${this.id}.json` : '.json';
+
+			this.$http[metodo](`/usuarios${finalUrl}`, this.usuario)
+				.then(() => this.limpar());
 		},
 		obterUsuarios() {
 			this.$http('usuarios.json')
@@ -56,6 +65,14 @@ export default {
 			// 	.then(resp => {
 			// 		this.usuarios = resp.data;
 			// 	});				
+		},
+		carregarUsuario(id) {
+			this.id = id;
+			this.usuario = { ...this.usuarios[id] };
+		},
+		excluirUsuario(id) {
+			this.$http.delete(`/usuarios/${id}.json`)
+				.then(() => this.limpar());
 		}
 	}
 	// created() {
