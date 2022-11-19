@@ -13,6 +13,18 @@ Vue.use({
         Vue.prototype.$http.interceptors.request.use(config => {
             console.log(config.method);
             return config;
-        })
+        }, error => Promise.reject(error))
+
+        Vue.prototype.$http.interceptors.response.use(resp => {
+            // const array = [];
+            // for (let chave in resp.data) {
+            //     array.push({
+            //         id: chave,
+            //         ...resp.data[chave]
+            //     })
+            // }
+            // resp.data = array;
+            return resp;
+        }, error => Promise.reject(error))
     }
 })
