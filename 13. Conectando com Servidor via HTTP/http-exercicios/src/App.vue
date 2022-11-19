@@ -26,6 +26,8 @@
 </template>
 
 <script>
+// import Axios from 'axios';
+
 export default {
 	data() {
 		return {
@@ -49,6 +51,11 @@ export default {
 				.then(resp => {
 					this.usuarios = resp.data;
 				});
+
+			// Axios('https://curso-vue-3e445-default-rtdb.firebaseio.com/usuarios.json')
+			// 	.then(resp => {
+			// 		this.usuarios = resp.data;
+			// 	});				
 		}
 	}
 	// created() {
