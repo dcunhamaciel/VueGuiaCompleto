@@ -1,6 +1,9 @@
 <template>
 	<div id="app" class="container">
 		<h1>HTTP com Axios</h1>
+		<b-alert  show dismissible v-for="mensagem in mensagens" :key="mensagem.texto" :variant="mensagem.tipo">
+			{{ mensagem.texto }}
+		</b-alert>
 		<b-card>
 			<b-form-group label="Nome:">
 				<b-form-input type="text" size="lg" v-model="usuario.nome" placeholder="Informe o Nome"></b-form-input>				
@@ -34,6 +37,7 @@
 export default {
 	data() {
 		return {
+			mensagens: [],
 			usuarios: [],
 			id: null,
 			usuario: {
@@ -44,6 +48,7 @@ export default {
 	},
 	methods: {
 		limpar() {
+			this.mensagens = [],
 			this.usuario.nome = '';
 			this.usuario.email = '';
 			this.id = null;
@@ -53,7 +58,13 @@ export default {
 			const finalUrl = this.id ? `/${this.id}.json` : '.json';
 
 			this.$http[metodo](`/usuarios${finalUrl}`, this.usuario)
-				.then(() => this.limpar());
+				.then(() => { 
+					this.limpar();
+					this.mensagens.push({
+						texto: 'Operação realizada com sucesso!',
+						tipo: 'success'						
+					});
+				});
 		},
 		obterUsuarios() {
 			this.$http('usuarios.json')
@@ -72,7 +83,13 @@ export default {
 		},
 		excluirUsuario(id) {
 			this.$http.delete(`/usuarios/${id}.json`)
-				.then(() => this.limpar());
+				.then(() => this.limpar())
+				.catch(() => {
+					this.mensagens.push({
+						texto: 'Problema para excluir!',
+						tipo: 'danger'
+					});
+				});
 		}
 	}
 	// created() {
