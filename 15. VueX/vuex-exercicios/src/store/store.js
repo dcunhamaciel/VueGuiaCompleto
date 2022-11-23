@@ -18,5 +18,17 @@ export default new Vuex.Store({
         adicionarProduto(state, payload) {
             state.produtos.push(payload);
         }
+    },
+    actions: {
+        // adicionarProduto(context, payload) {
+        //     setTimeout(() => {
+        //         context.commit('adicionarProduto', payload);
+        //     }, 1000);
+        // }
+        adicionarProduto({ commit }, payload) {
+            setTimeout(() => {
+                commit('adicionarProduto', payload);
+            }, 1000);
+        }        
     }
 })
