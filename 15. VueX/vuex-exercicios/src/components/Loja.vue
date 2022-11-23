@@ -25,6 +25,9 @@ export default {
     methods: {
         // ...mapMutations(['adicionarProduto']),
         ...mapActions(['adicionarProduto']),
+        // adicionarProduto(produto) {
+        //     this.$store.dispatch('adicionarProduto', produto);
+        // },
         adicionar() {
             const produto = {
                 id: this.sequencia,
