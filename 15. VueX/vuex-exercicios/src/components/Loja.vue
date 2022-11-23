@@ -28,9 +28,10 @@ export default {
                 quantidade: this.quantidade,
                 preco: this.preco
             }
-            this.sequencia++
-            // eslint-disable-next-line
-            console.log(produto)
+            
+            this.sequencia++;
+            
+            this.$store.state.produtos.push(produto);
         }
     }
 }
