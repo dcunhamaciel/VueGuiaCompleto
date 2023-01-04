@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Capítulo CSS</title>
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <style>
+        html {
+            height: 100%;
+        }
+        
+        body {
+            margin: 0;
+            font-family: 'Oswald', sans-serif;
+            background-color: lightgray;
+            height: 100%;
+        }
+        
+        .conteudo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100%;
+        }
+        
+        .menu-principal {
+            min-width: 400px;
+            text-align: center;
+        }
+        
+        .menu-principal h1 {
+            background: #333;
+            color: #fff;
+            border-bottom: solid 5px #4faddb;
+            padding: 15px 0px;
+            margin: 0;
+        }
+        
+        .menu-principal nav {
+            display: inline-block;
+            background-color: #fff;
+            min-width: 198px;
+        }
+        
+        .menu-principal a {
+            display: block;
+            padding: 10px 0px;
+            text-decoration: none;
+            color: #222;
+            font-size: 1.2em;
+        }
+        
+        .menu-principal a:hover {
+            background-color: rgba(79, 173, 219, .4);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="conteudo">
+        <div class="menu-principal">
+            <h1>Exercícios de CSS</h1>
+            <nav>
+                <a href="./flexbox1.html">Flex Box #1</a>
+                <a href="./flexbox2.html">Flex Box #2</a>
+                <a href="./flexbox3.html">Flex Box #3</a>
+            </nav>
+            <nav>
+                <a href="./cssgrid1.html">CSS Grid #1</a>
+                <a href="./cssgrid2.html">CSS Grid #2</a>
+                <a href="./cssgrid3.html">CSS Grid #3</a>
+            </nav>
+        </div>
+    </div>
+</body>
+
+</html>
